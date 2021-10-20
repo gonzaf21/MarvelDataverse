@@ -1,6 +1,6 @@
-package com.naisuapps.marveldataverse.data.model
+package com.naisuapps.marveldataverse.data.model.characters
 
-data class Series(
+data class Comics(
     val available: Int,
     val collectionURI: String,
     val items: List<Item>,

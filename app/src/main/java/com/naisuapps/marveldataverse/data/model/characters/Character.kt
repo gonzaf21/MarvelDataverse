@@ -1,4 +1,4 @@
-package com.naisuapps.marveldataverse.data.model
+package com.naisuapps.marveldataverse.data.model.characters
 
 data class Character(
     val comics: Comics,

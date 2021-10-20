@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_size">16dp</dimen>
+    <dimen name="app_tiny_margin_size">8dp</dimen>
+    <dimen name="app_margin_size">16dp</dimen>
+    <dimen name="app_corner_radius">20dp</dimen>
 </resources>

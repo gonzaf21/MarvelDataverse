@@ -1,4 +1,4 @@
-package com.naisuapps.marveldataverse.data.model
+package com.naisuapps.marveldataverse.data.model.characters
 
 data class Url(
     val type: String,

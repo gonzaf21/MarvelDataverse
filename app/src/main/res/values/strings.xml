@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MarvelDataverse</string>
+    <string name="app_name" translatable="false">MarvelDataverse</string>
+    <string name="character_description_empty">No current information available for this character.</string>
+    <string name="comics_list">Comics list</string>
 </resources>

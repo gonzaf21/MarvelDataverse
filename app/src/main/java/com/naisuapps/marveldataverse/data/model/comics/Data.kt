@@ -1,4 +1,4 @@
-package com.naisuapps.marveldataverse.data.model
+package com.naisuapps.marveldataverse.data.model.comics
 
 import com.google.gson.annotations.SerializedName
 
@@ -7,6 +7,6 @@ data class Data(
     val limit: Int,
     val offset: Int,
     @SerializedName("results")
-    val characters: List<Character>,
+    val comics: List<Comic>,
     val total: Int
 )

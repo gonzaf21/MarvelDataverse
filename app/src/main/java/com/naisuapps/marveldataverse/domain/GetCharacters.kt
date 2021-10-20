@@ -1,6 +1,6 @@
 package com.naisuapps.marveldataverse.domain
 
-import com.naisuapps.marveldataverse.data.model.Character
+import com.naisuapps.marveldataverse.data.model.characters.Character
 import com.naisuapps.marveldataverse.data.repository.CharacterRepository
 import javax.inject.Inject
 

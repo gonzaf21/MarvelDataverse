@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="character_description_empty">No current information available for this character.</string>
+    <string name="comics_list">Comics list</string>
+</resources>
