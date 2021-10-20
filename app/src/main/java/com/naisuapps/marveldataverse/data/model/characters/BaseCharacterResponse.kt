@@ -1,6 +1,6 @@
-package com.naisuapps.marveldataverse.data.model
+package com.naisuapps.marveldataverse.data.model.characters
 
-data class BaseResponse(
+data class BaseCharacterResponse(
     val attributionHTML: String,
     val attributionText: String,
     val code: Int,

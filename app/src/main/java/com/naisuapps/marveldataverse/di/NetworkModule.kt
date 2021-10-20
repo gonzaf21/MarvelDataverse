@@ -49,7 +49,7 @@ object NetworkModule {
 /**
  * Class needed to pass query parameters on calls and make it only here.
  */
-class ApiKeyInterceptor(private val apiKey: String = Constants.API_KEY) : Interceptor {
+class ApiKeyInterceptor(private val apiKey: String = BuildConfig.API_KEY) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
 
