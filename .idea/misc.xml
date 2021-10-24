@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Gonzalo/AndroidStudioProjects/MarvelDataverse/app/src/main/res/layout/activity_main.xml" value="0.5122156697556866" />
+        <entry key="..\:/Users/Gonzalo/AndroidStudioProjects/MarvelDataverse/app/src/main/res/layout/fragment_characters.xml" value="0.4046875" />
+        <entry key="..\:/Users/Gonzalo/AndroidStudioProjects/MarvelDataverse/app/src/main/res/layout/layout_character_item.xml" value="0.4666666666666667" />
         <entry key="..\:/Users/Gonzalo/AndroidStudioProjects/MarvelDataverse/app/src/main/res/layout/layout_comic_item.xml" value="0.3390625" />
       </map>
     </option>

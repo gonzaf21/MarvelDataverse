@@ -8,6 +8,7 @@ import com.naisuapps.marveldataverse.data.model.characters.Character
 import com.naisuapps.marveldataverse.data.model.comics.Comic
 import com.naisuapps.marveldataverse.domain.GetCharacterComics
 import com.naisuapps.marveldataverse.domain.GetCharacters
+import com.naisuapps.marveldataverse.domain.GetRandomCharacter
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
     private val getCharacters: GetCharacters,
-    private val getCharacterComics: GetCharacterComics
+    private val getCharacterComics: GetCharacterComics,
+    private val getRandomCharacter: GetRandomCharacter
 ) : ViewModel() {
     val characterModel = MutableLiveData<Character>()
     val comicsModel = MutableLiveData<List<Comic>>()
@@ -26,7 +28,7 @@ class CharacterViewModel @Inject constructor(
     lateinit var comicsList: List<Comic>
 
     fun onCreate() {
-        viewModelScope.launch {
+        /*viewModelScope.launch {
             isLoading.postValue(true)
 
             // Characters
@@ -47,7 +49,8 @@ class CharacterViewModel @Inject constructor(
 
             // Disable pb after loading.
             isLoading.postValue(false)
-        }
+        }*/
+        randomCharacter()
     }
 
     /**
@@ -57,18 +60,14 @@ class CharacterViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading.postValue(true)
 
-            if (!charactersList.isNullOrEmpty()) {
-                val randomCharacter = charactersList.random()
-                characterModel.postValue(randomCharacter)
+            // Random character
+            val randomCharacter = getRandomCharacter()
+            characterModel.postValue(randomCharacter)
 
-                // Comics
-                getCharacterComics.characterId = randomCharacter.id
-                comicsList = getCharacterComics()
-
-                if (!charactersList.isNullOrEmpty()) {
-                    comicsModel.postValue(comicsList)
-                }
-            }
+            // Comics
+            getCharacterComics.characterId = randomCharacter.id
+            comicsList = getCharacterComics()
+            comicsModel.postValue(comicsList)
 
             isLoading.postValue(false)
         }

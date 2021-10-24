@@ -5,14 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.Nullable
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.metadata
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.naisuapps.marveldataverse.R
 import com.naisuapps.marveldataverse.data.model.comics.Comic
 
-class ComicsAdapter(private val comicsList: List<Comic>) :
+class ComicsAdapter(private var comicsList: List<Comic>) :
     RecyclerView.Adapter<ComicsAdapter.ViewHolder>() {
     /**
      * Provide a reference to the type of views that you are using
@@ -42,10 +45,52 @@ class ComicsAdapter(private val comicsList: List<Comic>) :
         // Get element from your comicsList at this position and replace the
         // contents of the view with that element
         viewHolder.tvComicItem.text = currentItem.title
-        viewHolder.ivComicItem.load(currentItem.thumbnail.toString()) { crossfade(true)
-            transformations(RoundedCornersTransformation(20f)) }
+        viewHolder.ivComicItem.load(currentItem.thumbnail.toString()) {
+            crossfade(true)
+            transformations(RoundedCornersTransformation(20f))
+        }
     }
 
     // Return the size of your comicsList (invoked by the layout manager)
     override fun getItemCount() = comicsList.size
+
+    /**
+     * Updates list after comparing them with diffUtils.
+     */
+    fun updateComicsList(newComicsList: List<Comic>) {
+        val diffUtil = ComicsDiffCallback(newComicsList, this.comicsList)
+        val diffUtilResult = DiffUtil.calculateDiff(diffUtil)
+        this.comicsList = newComicsList
+        diffUtilResult.dispatchUpdatesTo(this)
+    }
+}
+
+/**
+ * Comics diff utils callback.
+ */
+class ComicsDiffCallback(
+    private var newComicsList: List<Comic>,
+    private var oldComicsList: List<Comic>
+) : DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int {
+        return oldComicsList.size
+    }
+
+    override fun getNewListSize(): Int {
+        return newComicsList.size
+    }
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldComicsList[oldItemPosition].id == newComicsList[newItemPosition].id
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldComicsList[oldItemPosition] == newComicsList[newItemPosition]
+    }
+
+    @Nullable
+    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+        return super.getChangePayload(oldItemPosition, newItemPosition)
+    }
 }

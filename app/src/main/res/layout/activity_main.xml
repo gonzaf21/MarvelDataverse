@@ -67,7 +67,7 @@
         android:background="@color/dc_dark_but_not_black"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -76,7 +76,7 @@
                 android:id="@+id/card_container_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/app_margin_size"
+                android:layout_margin="@dimen/app_margin_normal"
                 android:backgroundTint="@color/dc_dark_gray"
                 android:gravity="center"
                 android:visibility="gone"
@@ -86,7 +86,7 @@
                     android:id="@+id/tv_main"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/app_margin_size"
+                    android:padding="@dimen/app_margin_normal"
                     android:textColor="@color/dc_full_white"
                     tools:text="Lorem Ipsum has been the indus" />
             </com.google.android.material.card.MaterialCardView>
@@ -96,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/app_margin_size"
+                android:layout_marginHorizontal="@dimen/app_margin_normal"
                 android:visibility="gone">
                 <TextView
                     android:id="@+id/tv_comics_list_title"
@@ -116,8 +116,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_comics"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/app_margin_normal"/>
+        </LinearLayout>-->
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator

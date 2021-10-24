@@ -3,9 +3,11 @@ package com.naisuapps.marveldataverse
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.annotation.VisibleForTesting
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.Coil
 import coil.ImageLoader
@@ -15,10 +17,12 @@ import coil.request.ImageRequest
 import com.google.android.material.appbar.AppBarLayout
 import com.naisuapps.marveldataverse.databinding.ActivityMainBinding
 import com.naisuapps.marveldataverse.ui.adapters.ComicsAdapter
+import com.naisuapps.marveldataverse.ui.view.CharactersFragment
 import com.naisuapps.marveldataverse.ui.viewmodel.CharacterViewModel
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -30,9 +34,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Add fragment instance to container.
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container_main, CharactersFragment.newInstance())
+            .commit()
+
+
         // Load characters list
-        characterViewModel.onCreate()
-        setUpRecyclerView(binding.switchToggleSpanCount.isChecked)
+        /*characterViewModel.onCreate()
+        setUpRecyclerView(binding.switchToggleSpanCount.isChecked, true)
 
         // Update of view elements with var of viewModel observed in order to change its value in view after hearing.
         characterViewModel.characterModel.observe(this, Observer { currentCharacter ->
@@ -61,8 +71,7 @@ class MainActivity : AppCompatActivity() {
         characterViewModel.comicsModel.observe(this, Observer { comicsList ->
             binding.linearComicsTitleSwitch.isVisible = !comicsList.isNullOrEmpty()
 
-            // Finally, data bind the recycler view with adapter
-            binding.rvComics.adapter = ComicsAdapter(comicsList)
+            (binding.rvComics.adapter as ComicsAdapter).updateComicsList(comicsList)
         })
 
         // Loading observable.
@@ -78,11 +87,11 @@ class MainActivity : AppCompatActivity() {
         // Change dynamic span count.
         binding.switchToggleSpanCount.setOnClickListener {
             characterViewModel.changeDynamicSpanCount()
-        }
+        }*/
     }
 
-    private fun setUpRecyclerView(dynamicSpanCount: Boolean) {
-        val dynamicSpanCountInt = when (dynamicSpanCount) {
+    private fun setUpRecyclerView(dynamicSpanCount: Boolean, isFirstTime: Boolean = false) {
+        /*val dynamicSpanCountInt = when (dynamicSpanCount) {
             true -> 3
             false -> 2
         }
@@ -95,6 +104,11 @@ class MainActivity : AppCompatActivity() {
             // Specify the layout manager for recycler view
             binding.rvComics.layoutManager = this
         }
+
+        // Finally, data bind the recycler view with adapter
+        if (isFirstTime) {
+            binding.rvComics.adapter = ComicsAdapter(emptyList())
+        }*/
     }
 
     override fun onResume() {
@@ -102,13 +116,14 @@ class MainActivity : AppCompatActivity() {
         //setTitleAndNavigationToolbar("jebueno", false)
     }
 
-    private fun setTitleCollapseToolbar(title: String) {
+    fun setTitleCollapseToolbar(isAppBarLayoutVisible: Boolean = true, title: String) {
+        binding.appBarLayout.isVisible = isAppBarLayoutVisible
         binding.ctlMain.title = title
     }
 
     private fun setTitleAndNavigationToolbar(title: String, isBackButtonEnabled: Boolean = false) {
         setSupportActionBar(binding.toolbarMain)
-        setTitleCollapseToolbar(title)
+        setTitleCollapseToolbar(true, title)
         supportActionBar?.setDisplayHomeAsUpEnabled(isBackButtonEnabled)
         supportActionBar?.setDisplayShowHomeEnabled(isBackButtonEnabled)
 
