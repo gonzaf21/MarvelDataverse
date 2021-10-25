@@ -1,4 +1,4 @@
-package com.naisuapps.marveldataverse.domain
+package com.naisuapps.marveldataverse.domain.use_cases
 
 import androidx.paging.PagingData
 import com.naisuapps.marveldataverse.data.model.characters.Character

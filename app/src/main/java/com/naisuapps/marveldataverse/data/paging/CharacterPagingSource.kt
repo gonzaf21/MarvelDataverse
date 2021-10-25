@@ -20,7 +20,7 @@ class CharacterPagingSource @Inject constructor(private val apiService: Characte
             return LoadResult.Page(
                 data = response?.data?.characters ?: emptyList(),
                 prevKey = if (position == INITIAL_PAGE_OFFSET) null
-                else position.minus(CURRENT_LIMIT_SIZE),//null, // Only paging forward.
+                else position.minus(CURRENT_LIMIT_SIZE),
                 nextKey = if (response?.data?.characters.isNullOrEmpty()) null
                 else position.plus(CURRENT_LIMIT_SIZE)
             )
@@ -46,7 +46,9 @@ class CharacterPagingSource @Inject constructor(private val apiService: Characte
         //    just return null.
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
-            anchorPage?.prevKey?.plus(CURRENT_LIMIT_SIZE) ?: anchorPage?.nextKey?.minus(CURRENT_LIMIT_SIZE)
+            anchorPage?.prevKey?.plus(CURRENT_LIMIT_SIZE) ?: anchorPage?.nextKey?.minus(
+                CURRENT_LIMIT_SIZE
+            )
         }
     }
 

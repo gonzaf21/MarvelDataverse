@@ -1,4 +1,4 @@
-package com.naisuapps.marveldataverse.domain
+package com.naisuapps.marveldataverse.domain.use_cases
 
 import com.naisuapps.marveldataverse.data.model.comics.Comic
 import com.naisuapps.marveldataverse.data.repository.CharacterRepository

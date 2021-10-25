@@ -1,14 +1,13 @@
 package com.naisuapps.marveldataverse.ui.viewmodel
 
-import android.util.MutableDouble
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.naisuapps.marveldataverse.data.model.characters.Character
 import com.naisuapps.marveldataverse.data.model.comics.Comic
-import com.naisuapps.marveldataverse.domain.GetCharacterComics
-import com.naisuapps.marveldataverse.domain.GetCharacters
-import com.naisuapps.marveldataverse.domain.GetRandomCharacter
+import com.naisuapps.marveldataverse.domain.use_cases.GetCharacterComics
+import com.naisuapps.marveldataverse.domain.use_cases.GetCharacters
+import com.naisuapps.marveldataverse.domain.use_cases.GetRandomCharacter
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
