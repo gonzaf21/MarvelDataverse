@@ -19,8 +19,7 @@ class CharacterPagingSource @Inject constructor(private val apiService: Characte
             val response = apiService.getCharacters(CURRENT_LIMIT_SIZE, position)
             return LoadResult.Page(
                 data = response?.data?.characters ?: emptyList(),
-                prevKey = if (position == INITIAL_PAGE_OFFSET) null
-                else position.minus(CURRENT_LIMIT_SIZE),
+                prevKey = null, // Only forward
                 nextKey = if (response?.data?.characters.isNullOrEmpty()) null
                 else position.plus(CURRENT_LIMIT_SIZE)
             )
